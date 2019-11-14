@@ -769,7 +769,7 @@ benchmark(m7 <- create_tridiagonal_sb(5000,1,-1),
 # Fifth approach, use of row() and col() functions
 
 ```{r, cache = TRUE}
-tridiagonal_piotr_opiela <- function(n, d1, d2)
+tridiagonal_rowcol <- function(n, d1, d2)
 {
   x <- diag(x = d1, n, n) 
   x[row(x)-1 == col(x)] <- d2
@@ -782,8 +782,8 @@ tridiagonal_piotr_opiela <- function(n, d1, d2)
 # How to improve it?
 
 ```{r, cache = TRUE, eval=FALSE}
-source("tridiagonal_piotr_opiela.R")
-profvis::profvis(tridiagonal_piotr_opiela(5000,1,-1))
+source("tridiagonal_rowcol.R")
+profvis::profvis(tridiagonal_rowcol(5000,1,-1))
 ```
 ![](img/profvis4.png)
 ---

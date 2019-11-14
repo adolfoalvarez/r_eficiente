@@ -1,0 +1,9 @@
+base
+knitr
+xaringanthemer
+janitor
+countdown
+pryr
+tictoc
+microbenchmark
+rbenchmark
