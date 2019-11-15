@@ -1,6 +1,6 @@
 ---
 title: "Tips, trucos, y algunos paquetes para programacion eficiente en R"
-subtitle: "http://adolfoalvarez.cl/r_eficiente/"  
+# subtitle: "http://adolfoalvarez.cl/r_eficiente/"  
 author: "Adolfo Alvarez (Collegium Da Vinci, Analyx)"
 date: '`r Sys.Date()`'
 output:
@@ -36,7 +36,9 @@ duo_accent(primary_color = "#1b5f71",
 #   code_font_google   = google_font("Droid Mono")
 # )
 ```
-# Pero antes, un pequeño avance...
+# http://adolfoalvarez.cl/r_eficiente/
+
+## Pero antes, un pequeño avance...
 
 ---
 class: center, middle
@@ -273,7 +275,7 @@ make_clean_names(ugly_names)
 ```
 
 ---
-# A harder example, what this function does?
+# A harder example, what does this function do?
 
 ```{r}
 function1<-function(p1=5,p2=1,p3=2){output<-matrix(ncol=p1,nrow=p1,0)
