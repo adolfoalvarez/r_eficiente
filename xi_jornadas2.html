@@ -4,7 +4,7 @@
     <title>Tips, trucos, y algunos paquetes para programacion eficiente en R</title>
     <meta charset="utf-8" />
     <meta name="author" content="Adolfo Alvarez (Collegium Da Vinci, Analyx)" />
-    <meta name="date" content="2019-11-14" />
+    <meta name="date" content="2019-11-15" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link href="libs/countdown/countdown.css" rel="stylesheet" />
     <script src="libs/countdown/countdown.js"></script>
@@ -17,7 +17,7 @@ class: center, middle, inverse, title-slide
 
 # Tips, trucos, y algunos paquetes para programacion eficiente en R
 ### Adolfo Alvarez (Collegium Da Vinci, Analyx)
-### 2019-11-14
+### 2019-11-15
 
 ---
 
@@ -387,7 +387,7 @@ So, for example, `create_tridiagonal(3,1,2)` should return:
 ## [3,]    0    2    1
 ```
 
-<div class="countdown" id="timer_5dcdd5e0" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_5dce6501" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">15</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -977,7 +977,7 @@ benchmark(m7 &lt;- create_tridiagonal_sb(5000,1,-1),
 
 
 ```r
-tridiagonal_piotr_opiela &lt;- function(n, d1, d2)
+tridiagonal_rowcol &lt;- function(n, d1, d2)
 {
   x &lt;- diag(x = d1, n, n) 
   x[row(x)-1 == col(x)] &lt;- d2
@@ -991,8 +991,8 @@ tridiagonal_piotr_opiela &lt;- function(n, d1, d2)
 
 
 ```r
-source("tridiagonal_piotr_opiela.R")
-profvis::profvis(tridiagonal_piotr_opiela(5000,1,-1))
+source("tridiagonal_rowcol.R")
+profvis::profvis(tridiagonal_rowcol(5000,1,-1))
 ```
 ![](img/profvis4.png)
 ---
