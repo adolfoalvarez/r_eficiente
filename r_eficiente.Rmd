@@ -954,7 +954,7 @@ system.time({
 ---
 # purrr::map2
 
-Similar to mapply, map2 let us to use different lists/vectors as inputs to the function
+Similar to mapply, map2 let us to use two different lists/vectors as inputs to the function
 
 ```{r purrr_map2, cache = TRUE}
 system.time({
@@ -999,6 +999,74 @@ system.time({
 ```
 
 ---
+# furrr package
+
+- The furrr package is providing a future api for the purrr package.
+
+- The future package let you to evaluate R expressions asynchronously (for instance, by evaluating expressions in parallel) using various resources available to the user.
+
+```{r}
+library(purrr)
+library(furrr)
+```
+
+---
+#furrr package
+
+- We have two common option, multisession or multicore
+
+```{r}
+plan(multisession)
+```
+
+```{r}
+system.time({
+  matrices9 <- future_map(seq_along(d1_vector), tridiagonal_i)
+})
+```
+
+```{r}
+system.time({
+  matrices10 <- future_map2(d1_vector, d2_vector, create_tridiagonal2, n = 500)
+})
+```
+
+---
+# furrr package
+
+```{r}
+plan(multicore) #Not supported in Windows
+```
+
+
+```{r}
+system.time({
+  matrices11 <- future_map(seq_along(d1_vector), tridiagonal_i)
+})
+```
+
+```{r}
+system.time({
+  matrices12 <- future_map2(d1_vector, d2_vector, create_tridiagonal2, n = 500)
+})
+```
+
+---
+# Results
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(readr)
+library(tidyverse)
+results <- read_csv("comparison.csv")
+results
+```
+--
+
+## Parallel is not always faster! 
+
+---
+class: center
+
 # Conclusions
 
 ![](img/code.png)

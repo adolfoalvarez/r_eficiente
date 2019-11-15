@@ -387,7 +387,7 @@ So, for example, `create_tridiagonal(3,1,2)` should return:
 ## [3,]    0    2    1
 ```
 
-<div class="countdown" id="timer_5dce7914" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_5dce9e71" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">15</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -495,7 +495,7 @@ mem_used()
 ```
 
 ```
-## 62.4 MB
+## 62.5 MB
 ```
 
 ```r
@@ -571,7 +571,7 @@ end_time - start_time
 ```
 
 ```
-## Time difference of 3.008389 secs
+## Time difference of 3.00689 secs
 ```
 
 ```r
@@ -580,7 +580,7 @@ system.time({ Sys.sleep(3)})
 
 ```
 ##    user  system elapsed 
-##   0.000   0.000   3.003
+##   0.001   0.000   3.001
 ```
 
 - "User CPU time” gives the CPU time spent by the current process and “system CPU time” gives the CPU time spent by the kernel (the operating system) on behalf of the current process. (Post by William Dunlap)
@@ -599,7 +599,7 @@ toc()
 ```
 
 ```
-## sleeping: 3.01 sec elapsed
+## sleeping: 3.005 sec elapsed
 ```
 
 ---
@@ -619,8 +619,8 @@ x &lt;- runif(100)
 ## # A tibble: 2 x 6
 ##   expression      min   median `itr/sec` mem_alloc `gc/sec`
 ##   &lt;bch:expr&gt; &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;
-## 1 sqrt(x)    437.02ns 479.98ns  1690013.      848B        0
-## 2 x^0.5        9.16µs   9.49µs    95284.      848B        0
+## 1 sqrt(x)       546ns    976ns  1051848.      848B        0
+## 2 x^0.5          13µs   18.8µs    56409.      848B        0
 ```
 
 ---
@@ -638,10 +638,10 @@ microbenchmark(
 ```
 
 ```
-## Unit: nanoseconds
-##     expr  min     lq    mean median     uq   max neval
-##  sqrt(x)  505  660.0  832.09    721  816.0  6464   100
-##    x^0.5 9269 9474.5 9858.46   9630 9784.5 30862   100
+## Unit: microseconds
+##     expr    min      lq     mean  median     uq    max neval
+##  sqrt(x)  1.025  1.2150  1.44257  1.2830  1.544  4.026   100
+##    x^0.5 17.209 17.5015 18.95846 17.7265 18.010 51.235   100
 ```
 
 ---
@@ -661,8 +661,8 @@ benchmark(
 
 ```
 ##      test replications elapsed relative user.self sys.self user.child
-## 1 method1          100   0.001        1     0.000        0          0
-## 2 method2          100   0.002        2     0.002        0          0
+## 1 method1          100   0.002      1.0     0.001        0          0
+## 2 method2          100   0.003      1.5     0.003        0          0
 ##   sys.child
 ## 1         0
 ## 2         0
@@ -768,11 +768,11 @@ benchmark(m1 &lt;- create_tridiagonal(5000,1,-1),
 
 ```
 ##                                     test replications elapsed relative
-## 1  m1 &lt;- create_tridiagonal(5000, 1, -1)            3   0.721    2.253
-## 2 m2 &lt;- create_tridiagonal2(5000, 1, -1)            3   0.320    1.000
+## 1  m1 &lt;- create_tridiagonal(5000, 1, -1)            3   1.476    2.295
+## 2 m2 &lt;- create_tridiagonal2(5000, 1, -1)            3   0.643    1.000
 ##   user.self sys.self user.child sys.child
-## 1     0.346    0.376          0         0
-## 2     0.156    0.164          0         0
+## 1     0.686    0.790          0         0
+## 2     0.298    0.344          0         0
 ```
 
 ---
@@ -843,11 +843,11 @@ benchmark(m3 &lt;- diagonal(5000,1,-1),
 
 ```
 ##                           test replications elapsed relative user.self
-## 1  m3 &lt;- diagonal(5000, 1, -1)            3   3.592    6.068     2.412
-## 2 m4 &lt;- diagonal2(5000, 1, -1)            3   0.592    1.000     0.280
+## 1  m3 &lt;- diagonal(5000, 1, -1)            3   3.573    5.985     2.423
+## 2 m4 &lt;- diagonal2(5000, 1, -1)            3   0.597    1.000     0.269
 ##   sys.self user.child sys.child
-## 1    1.180          0         0
-## 2    0.312          0         0
+## 1    1.147          0         0
+## 2    0.329          0         0
 ```
 
 
@@ -903,11 +903,11 @@ benchmark(m5 &lt;- tridiagonal_matrix(5000,1,-1),
 
 ```
 ##                                     test replications elapsed relative
-## 1  m5 &lt;- tridiagonal_matrix(5000, 1, -1)            3   8.762    1.482
-## 2 m6 &lt;- tridiagonal_matrix2(5000, 1, -1)            3   5.913    1.000
+## 1  m5 &lt;- tridiagonal_matrix(5000, 1, -1)            3   9.061     1.48
+## 2 m6 &lt;- tridiagonal_matrix2(5000, 1, -1)            3   6.123     1.00
 ##   user.self sys.self user.child sys.child
-## 1     5.567    3.195          0         0
-## 2     3.462    2.451          0         0
+## 1     5.626    3.432          0         0
+## 2     3.368    2.721          0         0
 ```
 
 ---
@@ -965,11 +965,11 @@ benchmark(m7 &lt;- create_tridiagonal_rcpp(5000,1,-1),
 
 ```
 ##                                          test replications elapsed
-## 1  m7 &lt;- create_tridiagonal_rcpp(5000, 1, -1)            3   0.939
-## 2 m8 &lt;- create_tridiagonal_rcpp2(5000, 1, -1)            3   0.214
+## 1  m7 &lt;- create_tridiagonal_rcpp(5000, 1, -1)            3   2.049
+## 2 m8 &lt;- create_tridiagonal_rcpp2(5000, 1, -1)            3   0.539
 ##   relative user.self sys.self user.child sys.child
-## 1    4.388     0.784    0.155          0         0
-## 2    1.000     0.073    0.141          0         0
+## 1    3.801     1.696    0.352          0         0
+## 2    1.000     0.154    0.385          0         0
 ```
 
 ---
@@ -1024,11 +1024,11 @@ benchmark(m9 &lt;- tridiagonal_rowcol(5000,1,-1),
 
 ```
 ##                                      test replications elapsed relative
-## 2 m10 &lt;- tridiagonal_rowcol2(5000, 1, -1)            3   5.145    1.000
-## 1   m9 &lt;- tridiagonal_rowcol(5000, 1, -1)            3   9.905    1.925
+## 2 m10 &lt;- tridiagonal_rowcol2(5000, 1, -1)            3   5.699    1.000
+## 1   m9 &lt;- tridiagonal_rowcol(5000, 1, -1)            3  11.165    1.959
 ##   user.self sys.self user.child sys.child
-## 2     3.941    1.204          0         0
-## 1     7.098    2.807          0         0
+## 2     4.278    1.421          0         0
+## 1     7.868    3.289          0         0
 ```
 
 ---
@@ -1047,17 +1047,17 @@ benchmark(create_tridiagonal(5000,1,-1),
 
 ```
 ##                                   test replications elapsed relative
-## 1      create_tridiagonal(5000, 1, -1)            3   0.462    1.000
-## 4 create_tridiagonal_rcpp(5000, 1, -1)            3   0.962    2.082
-## 2                diagonal(5000, 1, -1)            3   1.357    2.937
-## 3      tridiagonal_matrix(5000, 1, -1)            3   4.167    9.019
-## 5      tridiagonal_rowcol(5000, 1, -1)            3   4.320    9.351
+## 1      create_tridiagonal(5000, 1, -1)            3   1.168    1.000
+## 4 create_tridiagonal_rcpp(5000, 1, -1)            3   2.065    1.768
+## 2                diagonal(5000, 1, -1)            3   3.401    2.912
+## 3      tridiagonal_matrix(5000, 1, -1)            3   9.493    8.128
+## 5      tridiagonal_rowcol(5000, 1, -1)            3  10.835    9.277
 ##   user.self sys.self user.child sys.child
-## 1     0.169    0.293          0         0
-## 4     0.771    0.191          0         0
-## 2     0.941    0.416          0         0
-## 3     2.557    1.609          0         0
-## 5     3.060    1.260          0         0
+## 1     0.428    0.740          0         0
+## 4     1.667    0.396          0         0
+## 2     2.290    1.111          0         0
+## 3     5.998    3.460          0         0
+## 5     7.787    3.019          0         0
 ```
 
 ---
@@ -1066,27 +1066,27 @@ benchmark(create_tridiagonal(5000,1,-1),
 
 ```
 ##                                     test replications elapsed relative
-## 9  create_tridiagonal_rcpp2(5000, 1, -1)            3   0.336    1.000
-## 6       create_tridiagonal2(5000, 1, -1)            3   0.338    1.006
-## 7                 diagonal2(5000, 1, -1)            3   0.389    1.158
-## 1        create_tridiagonal(5000, 1, -1)            3   0.657    1.955
-## 4   create_tridiagonal_rcpp(5000, 1, -1)            3   0.988    2.940
-## 2                  diagonal(5000, 1, -1)            3   1.832    5.452
-## 10      tridiagonal_rowcol2(5000, 1, -1)            3   2.892    8.607
-## 8       tridiagonal_matrix2(5000, 1, -1)            3   3.757   11.182
-## 3        tridiagonal_matrix(5000, 1, -1)            3   4.570   13.601
-## 5        tridiagonal_rowcol(5000, 1, -1)            3   5.376   16.000
+## 9  create_tridiagonal_rcpp2(5000, 1, -1)            3   0.557    1.000
+## 6       create_tridiagonal2(5000, 1, -1)            3   0.589    1.057
+## 7                 diagonal2(5000, 1, -1)            3   0.669    1.201
+## 1        create_tridiagonal(5000, 1, -1)            3   1.360    2.442
+## 4   create_tridiagonal_rcpp(5000, 1, -1)            3   2.119    3.804
+## 2                  diagonal(5000, 1, -1)            3   3.446    6.187
+## 10      tridiagonal_rowcol2(5000, 1, -1)            3   5.597   10.048
+## 8       tridiagonal_matrix2(5000, 1, -1)            3   6.354   11.408
+## 3        tridiagonal_matrix(5000, 1, -1)            3   9.478   17.016
+## 5        tridiagonal_rowcol(5000, 1, -1)            3  11.477   20.605
 ##    user.self sys.self user.child sys.child
-## 9      0.088    0.248          0         0
-## 6      0.139    0.199          0         0
-## 7      0.157    0.232          0         0
-## 1      0.173    0.485          0         0
-## 4      0.805    0.183          0         0
-## 2      1.271    0.560          0         0
-## 10     2.232    0.660          0         0
-## 8      2.063    1.692          0         0
-## 3      2.841    1.729          0         0
-## 5      3.800    1.576          0         0
+## 9      0.157    0.401          0         0
+## 6      0.205    0.385          0         0
+## 7      0.281    0.388          0         0
+## 1      0.490    0.858          0         0
+## 4      1.790    0.327          0         0
+## 2      2.335    1.111          0         0
+## 10     4.225    1.371          0         0
+## 8      3.511    2.810          0         0
+## 3      5.950    3.495          0         0
+## 5      8.150    3.277          0         0
 ```
 
 ---
@@ -1162,7 +1162,7 @@ system.time({
 
 ```
 ##    user  system elapsed 
-##   0.140   0.034   0.174
+##   0.144   0.035   0.180
 ```
 
 ---
@@ -1184,7 +1184,7 @@ system.time({
 
 ```
 ##    user  system elapsed 
-##   0.108   0.016   0.124
+##   0.135   0.077   0.211
 ```
 
 ---
@@ -1201,7 +1201,7 @@ system.time({
 
 ```
 ##    user  system elapsed 
-##   0.258   0.087   0.347
+##   0.344   0.203   0.547
 ```
 
 ---
@@ -1218,13 +1218,13 @@ system.time({
 
 ```
 ##    user  system elapsed 
-##   0.099   0.035   0.133
+##   0.180   0.043   0.223
 ```
 
 ---
 # purrr::map2
 
-Similar to mapply, map2 let us to use different lists/vectors as inputs to the function
+Similar to mapply, map2 let us to use two different lists/vectors as inputs to the function
 
 
 ```r
@@ -1235,7 +1235,7 @@ system.time({
 
 ```
 ##    user  system elapsed 
-##   0.031   0.048   0.078
+##   0.146   0.053   0.200
 ```
 
 ---
@@ -1258,7 +1258,7 @@ system.time({
 
 ```
 ##    user  system elapsed 
-##   0.146   0.118   0.356
+##   0.198   0.250   0.664
 ```
 
 ```r
@@ -1279,7 +1279,7 @@ system.time({
 
 ```
 ##    user  system elapsed 
-##   0.248   0.413   0.576
+##   0.035   0.639   0.720
 ```
 
 
@@ -1292,10 +1292,121 @@ system.time({
 
 ```
 ##    user  system elapsed 
-##   0.451   0.423   0.507
+##   0.486   1.716   1.074
 ```
 
 ---
+# furrr package
+
+- The furrr package is providing a future api for the purrr package.
+
+- The future package let you to evaluate R expressions asynchronously (for instance, by evaluating expressions in parallel) using various resources available to the user.
+
+
+```r
+library(purrr)
+library(furrr)
+```
+
+```
+## Loading required package: future
+```
+
+---
+#furrr package
+
+- We have two common option, multisession or multicore
+
+
+```r
+plan(multisession)
+```
+
+
+```r
+system.time({
+  matrices9 &lt;- future_map(seq_along(d1_vector), tridiagonal_i)
+})
+```
+
+```
+##    user  system elapsed 
+##   0.333   0.098   1.541
+```
+
+
+```r
+system.time({
+  matrices10 &lt;- future_map2(d1_vector, d2_vector, create_tridiagonal2, n = 500)
+})
+```
+
+```
+##    user  system elapsed 
+##   0.307   0.124   0.836
+```
+
+---
+# furrr package
+
+
+```r
+plan(multicore) #Not supported in Windows
+```
+
+
+
+```r
+system.time({
+  matrices11 &lt;- future_map(seq_along(d1_vector), tridiagonal_i)
+})
+```
+
+```
+##    user  system elapsed 
+##   0.129   0.022   0.151
+```
+
+
+```r
+system.time({
+  matrices12 &lt;- future_map2(d1_vector, d2_vector, create_tridiagonal2, n = 500)
+})
+```
+
+```
+##    user  system elapsed 
+##    0.08    0.02    0.10
+```
+
+---
+# Results
+
+
+```
+## # A tibble: 12 x 5
+##    method            number replications elapsed relative
+##    &lt;chr&gt;              &lt;dbl&gt;        &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;
+##  1 map                    4            1   0.043     1   
+##  2 map2                   5            1   0.065     1.51
+##  3 lapply                 2            1   0.066     1.54
+##  4 for                    1            1   0.069     1.60
+##  5 multicore_map2        12            1   0.091     2.12
+##  6 multicore_map         11            1   0.112     2.60
+##  7 mapply                 3            1   0.187     4.35
+##  8 mclapply               7            1   0.338     7.86
+##  9 mcmapply               8            1   0.523    12.2 
+## 10 foreach                6            1   0.629    14.6 
+## 11 multisession_map2     10            1   7.16    166.  
+## 12 multisession_map       9            1   7.19    167.
+```
+--
+
+## Parallel is not always faster! 
+
+---
+class: center
+
 # Conclusions
 
 ![](img/code.png)

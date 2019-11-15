@@ -1,0 +1,13 @@
+method,number,replications,elapsed,relative
+map,4,1,0.043,1
+map2,5,1,0.065,1.512
+lapply,2,1,0.066,1.535
+for,1,1,0.069,1.605
+multicore_map2,12,1,0.091,2.116
+multicore_map,11,1,0.112,2.605
+mapply,3,1,0.187,4.349
+mclapply,7,1,0.338,7.86
+mcmapply,8,1,0.523,12.163
+foreach,6,1,0.629,14.628
+multisession_map2,10,1,7.158,166.465
+multisession_map,9,1,7.188,167.163
