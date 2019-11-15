@@ -1,6 +1,6 @@
 ---
 title: "Tips, trucos, y algunos paquetes para programacion eficiente en R"
-# subtitle: "Tips, trucos, y algunos paquetes para programacion eficiente en R"  
+subtitle: "http://adolfoalvarez.cl/r_eficiente/"  
 author: "Adolfo Alvarez (Collegium Da Vinci, Analyx)"
 date: '`r Sys.Date()`'
 output:
